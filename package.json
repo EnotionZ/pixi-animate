@@ -1,0 +1,8 @@
+{
+  "name": "pixi-animate",
+  "version": "0.0.1",
+  "author": "Dominick Pham",
+  "devDependencies": {
+    "pixi.js": "~2.2.8"
+  }
+}
