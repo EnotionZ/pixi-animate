@@ -16,4 +16,34 @@
     document.body.appendChild(renderer.view);
     animate();
 
+    var graphic = new PIXI.Graphics();
+    var size = 64;
+    graphic.position = {x: 100, y: 100};
+    graphic.anchor = {x: 0.5, y: 0.5};
+    graphic.width = size;
+    graphic.height = size;
+    graphic.beginFill(0xff0000, 1);
+    graphic.drawRect(0, 0, size, size);
+    graphic.endFill();
+    stage.addChild(graphic);
+
+
+    renderer.view.addEventListener('click', function() {
+        var x = size/2 + (width-size)*Math.random();
+        var y = size/2 + (height-size)*Math.random();
+        graphic.animate({
+            position: {x: x, y: y},
+            alpha: Math.random(),
+            rotation: Math.random()*Math.PI*8
+        }, 1000, 'easeInOutCubic', function() {
+            console.log(
+                'done',
+                graphic.position,
+                graphic.alpha,
+                graphic.rotation,
+                graphic.graphicsData
+            );
+        });
+    });
+
 })();
