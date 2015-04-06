@@ -126,15 +126,11 @@
         var rootAnimatableProperty = new TweenableProps(elem, 'root', properties);
 
         var animate = function() {
-            var
-            now = Date.now(),
-            time = Date.now() - startTime,
-            percent = Math.min(time/duration, 1);
-
+            var now = Date.now(), time = Math.min(Date.now() - startTime, duration);
             var props = rootAnimatableProperty.compute(time, duration, easing);
             _forEachProperty(props, function(value, key) { elem[key] = value; });
 
-            if(percent < 1) {
+            if(time < duration) {
                 requestAnimationFrame(animate);
             } else if(typeof callback === 'function'){
                 callback();
