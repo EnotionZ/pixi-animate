@@ -28,6 +28,9 @@
     stage.addChild(graphic);
 
 
+    var loggerEl = document.createElement('pre');
+    document.body.appendChild(loggerEl);
+
     renderer.view.addEventListener('click', function() {
         var x = size/2 + (width-size)*Math.random();
         var y = size/2 + (height-size)*Math.random();
@@ -36,13 +39,12 @@
             alpha: Math.random(),
             rotation: Math.random()*Math.PI*8
         }, 1000, 'easeInOutCubic', function() {
-            console.log(
-                'done',
-                graphic.position,
-                graphic.alpha,
-                graphic.rotation,
-                graphic.graphicsData
-            );
+            var out = {
+                position: graphic.position,
+                alpha: graphic.alpha,
+                rotation: graphic.rotation
+            };
+            loggerEl.innerHTML = JSON.stringify(out, null, 2);
         });
     });
 
